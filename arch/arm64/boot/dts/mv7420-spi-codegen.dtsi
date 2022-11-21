@@ -1,0 +1,182 @@
+
+#include "mv7420-spi-codegen.h"
+
+#ifdef CONFIG_DTS_FINGERPRINT_FPC1020
+&fpc1020_spi {
+	status = "okay";
+	fpc1020@0 {
+		compatible = "fpc,fpc1020";
+		reg = <0>;
+		spi-max-frequency = <12000000>;
+
+        pinctrl-names = "fpc_irq_gpio";
+        pinctrl-0 = <&fpc_irq_gpio>;
+		fpc,gpio_irq = <&fpc1020_irq_bank fpc1020_irq_pin fpc1020_irq_func>;
+		fpc,gpio_reset = <&fpc1020_reset_bank fpc1020_reset_pin fpc1020_reset_func>;
+		/* fpc,vddtx_mv = <3300>; */
+		/* fpc,txout_boost_enable; */
+		/* fpc,force_hwid = <0x1234> */
+		vcc_spi-supply = <&fingerprint_supply18>;
+		vdd_ana-supply = <&fingerprint_supply28>;
+		vdd_io-supply = <&fingerprint_supply18>;
+
+		controller-data{
+			cs-gpio = <&fpc1020_cs_bank fpc1020_cs_pin fpc1020_cs_func>;
+			samsung,spi-feedback-delay = <1>;
+		};
+	};
+};
+#endif
+
+#ifdef CONFIG_DTS_AUDIOCODEC_WM5110
+&wm5110_spi{
+		status = "okay";
+		audio_codec: wm5110@0 {
+			compatible = "wlf,wm5110";
+			reg = <0x0>;
+			spi-max-frequency = <20000000>;
+			interrupts = <audio_wm5110_irq_pin 0 0>;
+			interrupt-parent = <&audio_wm5110_irq_bank>;
+			gpio-controller;
+			pinctrl-names ="default";
+			pinctrl-0 = <&codec_reset &codec_ldoena>;
+			wlf,reset = <&audio_wm5110_rst_bank audio_wm5110_rst_pin audio_wm5110_rst_func>;
+			wlf,ldoena = <&audio_wm5110_ldoena_bank audio_wm5110_ldoena_pin audio_wm5110_ldoena_func>;
+
+			wlf,init-mic-delay = <30>;
+			wlf,micd-detect-debounce = <300>;
+			wlf,micd-bias-start-time = <0x1>;
+			wlf,micd-rate = <0x7>;
+			wlf,micd-dbtime = <0x1>;
+			wlf,micd-timeout = <1000>;
+			wlf,micd-force-micbias;
+			wlf,micd-ranges = <
+				139 226
+				295 115
+				752 114
+				1257 217
+			>;
+
+			wlf,micd-configs = <
+				0x0 1 0
+			>;
+
+			wlf,micbias1 = <2800 0 1 0 0>;
+			wlf,micbias2 = <1800 0 1 0 0>;
+			wlf,micbias3 = <1800 0 1 0 0>;
+
+			wlf,gpio-defaults = <
+				0xA101
+				0xA101
+				0xA101
+				0xA101
+				0x8101
+			>;
+
+			wlf,gpsw = <0x3>;
+			wlf,use-jd-gpio =<&gpa0 1 0>;
+			wlf,jd-gpio-nopull;
+			wlf,fixed-hpdet-imp = <16>;
+			wlf,micd-software-compare;
+			wlf,micd-open-circuit-declare = <1>;
+			wlf,jd-wake-time = <5000>;
+			wlf,max-channels-clocked = <2 0 0>;
+			/* 0:MICVDD 1:MICBIAS1 2:MICBIAS2 3:MICBIAS3 */
+			wlf,dmic-ref = <2 1 3 0>;
+			/* 1st cell:IN1 2rd cell:IN2 3nd cell:IN3 4th cell:IN4 */
+			wlf,inmode = <0 0 0 0>;
+			AVDD-supply = <&ldo27_reg>;
+			LDOVDD-supply = <&ldo27_reg>;
+			DBVDD1-supply = <&ldo27_reg>;
+
+			CPVDD-supply = <&ldo27_reg>;
+			DBVDD2-supply = <&ldo27_reg>;
+			DBVDD3-supply = <&ldo27_reg>;
+			SPKVDDL-supply = <&ldo27_reg>;
+			SPKVDDR-supply = <&ldo27_reg>;
+
+			adsps {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				adsp@1100 {
+					reg = <0x1100>;
+					firmware {
+						EDAC {
+							wlf,wmfw-file = "edac";
+							wlf,bin-file = "edac";
+						};
+						TRACE {
+							wlf,wmfw-file = "trace";
+							wlf,compr-caps = <1 8 0x4 1 8000 16000 24000>;
+						};
+					};
+				};
+				adsp@1200 {
+					reg = <0x1200>;
+					firmware {
+						TX_NB {
+							wlf,wmfw-file = "tx-nb";
+						};
+						TX_WB {
+							wlf,wmfw-file = "tx-wb";
+						};
+						TX_SWB_INTERVIEW {
+							wlf,wmfw-file = "tx-swb";
+						};
+						TX_SWB_CONVERSATION {
+							wlf,wmfw-file = "tx-swb";
+						};
+					};
+				};
+				adsp@1300 {
+					reg = <0x1300>;
+					firmware {
+						TX_NB {
+							wlf,wmfw-file = "tx-nb";
+							wlf,bin-file = "tx-nb";
+						};
+						TX_WB {
+							wlf,wmfw-file = "tx-wb";
+							wlf,bin-file = "tx-wb";
+						};
+						TX_SWB_INTERVIEW {
+							wlf,wmfw-file = "tx-swb";
+							wlf,bin-file = "tx-swb-interview";
+						};
+						TX_SWB_CONVERSATION {
+							wlf,wmfw-file = "tx-swb";
+							wlf,bin-file = "tx-swb-conversation";
+						};
+						VOICECONTROL {
+							wlf,wmfw-file = "ez2-control";
+							wlf,bin-file = "ez2-control";
+						};
+						LPSD {
+							wlf,wmfw-file = "ez2-control";
+							wlf,bin-file = "lpsd-control";
+						};
+					};
+				};
+				adsp@1400 {
+					reg = <0x1400>;
+					firmware {
+						RX_NB {
+							wlf,wmfw-file = "rx-anc-nb";
+							wlf,bin-file = "rx-anc-nb";
+						};
+						RX_WB {
+							wlf,wmfw-file = "rx-anc-wb";
+							wlf,bin-file = "rx-anc-wb";
+						};
+					};
+				};
+			};
+
+			controller-data {
+				cs-gpio = <&audio_wm5110_cs_bank audio_wm5110_cs_pin audio_wm5110_cs_func>;
+				samsung,spi-feedback-delay = <0>;
+			};
+		};
+	};
+#endif	

@@ -1,0 +1,58 @@
+Exynos Touch Daemon Driver
+======================
+
+Touch Daemon Driver for Exynos AP
+
+Supported chips:
+	Samsungs S.LSI Exynos7420
+
+Author: Seokha Hong <ska.hong@samsung.com>
+
+-----------------
+1. Description
+-----------------
+Daemon makes virtual input events for testing touch booster. 
+It can measure responsivness on dedicated scenarios with touch booster enabled/disabled easily.
+Also it can check power consumption on dedicated scenarios with touch booster enabled/disabled.
+
+-----------------------------------------------
+2. sysfs files for exynos touch daemon
+-----------------------------------------------
+
+*<NOTICE : During below tests, DO NOT MAKE TOUCH EVENTS OF HUMAN >*
+
+/sys/devices/exynos_touch_daemon.XX/daemon/booster
+/sys/devices/exynos_touch_daemon.XX/daemon/mode
+/sys/devices/exynos_touch_daemon.XX/daemon/start
+/sys/devices/exynos_touch_daemon.XX/daemon/power
+/sys/devices/exynos_touch_daemon.XX/daemon/powerlog
+
+'booster'   - Enable/Disable Touch Booster
+				Value : 1 is Enable, 0 is Disable (Default: Disable)
+
+'mode'      	- Choose Responsiveness Test Scenario (Flicking/Scrolling on Music, Gallery App)
+				Value :
+				0 is Scroll on Music App
+				1 is Scroll on Gallery App
+				2 is Flicking on Gallery App
+				3 is Flicking on Music App
+				(Default: 1, Scroll on Gallery App)
+
+'start'      	- Selected Responsiveness Test start
+				Value : 1 is Start (Default: Disable, End sysfs file doesn't exist because all tests are automatically end after 0~60s)
+
+'power'		- Choose Power consumption Test Scenario (It start immediately without enable start sysfs value)
+				 Value : 
+				1 Scrolling on Music App (should start on Home screen, shortcut of Music App should be placed 1 east , 1 north block based on left top)
+				2 Scrolling on Setting App (should start on Settings App)
+				3 Scrolling on Gallery App Thumbnail (should start on Gallery App with Thumbnail Screen)
+				4 Scrolling on Gallery App Full Screen (should start on Gallery App with Full Screen Browsing)
+				5 Fast & Repeated Single Touches on Calculator App (should start on Calculator App)
+				6 Fast & Repeated Single Touches (should start on Message App and cursor should be
+																		in the mesaage blank which  letter should be written)
+				(Default value is meaningless beacuse when put value, test starts immediately)
+
+'powerlog' - Logging responsiveness data on Power consumption Test Scenario
+				  Value : 1 is Enable, 0 is Disable
+				  (Default : Disable )
+				  *<NOTICE : If this feature is enabled, power consumption may increase. Please disable this feature on power consumption measurement>*

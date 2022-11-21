@@ -1,0 +1,551 @@
+# arch/arm/mach-exynos/Kconfig
+#
+# Copyright (c) 2010-2011 Samsung Electronics Co., Ltd.
+#		http://www.samsung.com/
+#
+# Licensed under GPLv2
+
+# Configuration options for the EXYNOS4
+
+if ARCH_EXYNOS
+
+menu "SAMSUNG EXYNOS SoCs Support"
+
+config ARCH_EXYNOS5
+	bool "SAMSUNG EXYNOS5"
+	select HAVE_ARM_SCU if SMP
+	select HAVE_SMP
+	select HAVE_EXYNOS5_HSI2C if I2C
+	help
+	  Samsung EXYNOS5 (Cortex-A53/A57) SoC based systems
+
+config ARCH_EXYNOS7
+	bool "SAMSUNG EXYNOS7"
+	select HAVE_ARM_SCU if SMP
+	select HAVE_SMP
+	select HAVE_EXYNOS5_HSI2C if I2C
+	select PM_GENERIC_DOMAINS if PM
+	help
+	  Samsung EXYNOS7 (Cortex-A57/A53) SoC based systems
+
+config SOC_EXYNOS7420
+	bool "SAMSUNG EXYNOS7420"
+	depends on ARCH_EXYNOS7
+	select SAMSUNG_DMADEV
+	select CAL_SYS_PWRDOWN
+	select EXYNOS_SPI_RESET_DURING_DSTOP if CPU_IDLE
+	help
+	  Enable EXYNOS7420 SoC support
+
+config SOC_EXYNOS7420_EVT_0
+	bool "SAMSUNG EXYNOS7420 EVT0"
+	depends on SOC_EXYNOS7420
+	select CAL_SYS_PWRDOWN
+	help
+	  Enable EXYNOS7420 EVT0 SoC support
+
+config SOC_EXYNOS7580
+	bool "SAMSUNG EXYNOS7580"
+	depends on ARCH_EXYNOS7
+	select SAMSUNG_DMADEV
+	select CAL_SYS_PWRDOWN
+	select ARCH_HAS_OPP
+	select ARCH_HAS_BANDGAP
+	help
+	  Enable EXYNOS7580 SoC support
+
+config SOC_EXYNOS5433
+	bool "SAMSUNG EXYNOS5433"
+	default n
+	depends on ARCH_EXYNOS5
+	select PM_GENERIC_DOMAINS if PM
+	select S5P_PM if PM
+	select S5P_SLEEP if SUSPEND
+	select SAMSUNG_DMADEV
+	select EXYNOS_HSI2C_RESET_DURING_DSTOP if CPU_IDLE
+	select EXYNOS_SPI_RESET_DURING_DSTOP if CPU_IDLE
+	select CAL_SYS_PWRDOWN
+	help
+	  Enable EXYNOS5433 SoC support
+
+config EXYNOS_ASV
+	bool "ENABLE EXYNOS ASV"
+	default n
+	depends on ARCH_EXYNOS
+
+config EXYNOS_ASV_DYNAMIC_ABB
+	bool "Enable Dynamic ABB"
+	default n
+	depends on EXYNOS_ASV
+
+config EXYNOS_ASV_SUPPORT_RCC
+	bool "Support RCC Table"
+	default n
+	depends on EXYNOS_ASV
+
+config EXYNOS_ASV_MARGIN_TEST
+	bool "Enable Margin Test"
+	default n
+	depends on EXYNOS_ASV
+
+config CAL_SYS_PWRDOWN
+	bool "Enable CAL for system level power down"
+
+config EXYNOS_ATAGS
+	def_bool "ATAGS based boot for EXYNOS (deprecated)"
+	depends on !ARCH_MULTIPLATFORM
+	depends on ATAGS
+	help
+	  The EXYNOS platform is moving towards being completely probed
+	  through device tree. This enables support for board files using
+	  the traditional ATAGS boot format.
+	  Note that this option is not available for multiplatform builds.
+
+config EXYNOS5_DYNAMIC_CPU_HOTPLUG
+	bool "Dynamic CPU Hotplug support"
+	depends on !SOC_EXYNOS7580
+	depends on CPU_FREQ
+	help
+		Enable Dynamic CPU Hotplug
+		
+config EXYNOS_MARCH_DYNAMIC_CPU_HOTPLUG
+	bool "March Dynamic CPU Hotplug support"
+	depends on !SOC_EXYNOS7580
+	depends on CPU_FREQ
+	help
+		Enable March Dynamic CPU Hotplug
+
+config EXYNOS_CPU_CORE_NUM_PM_QOS
+	bool "Control CPU Core number"
+	depends on !SOC_EXYNOS7580
+	default y
+	help
+		Enable March Dynamic CPU Hotplug
+		
+config APRIL_DYNAMIC_CPU_HOTPLUG_SCHEME
+	bool "New Hotpllug scheme for Test in April"
+	default n
+	help
+	  New Hotplug scheme with cpu num qos
+
+menu "Extensions for Dynamic CPU Hotplug support"
+depends on EXYNOS5_DYNAMIC_CPU_HOTPLUG
+config DEFERRABLE_DM_HOTPLUG
+	bool "Deferrable Hotplug Invoking"
+	help
+	  Dynamic CPU Hotplug is invoked deferrable-periodically
+
+	  If in doubt, say N.
+endmenu
+
+config EXYNOS7580_DYNAMIC_CLUSTER_HOTPLUG
+	bool "Dynamic CLUSTER Hotplug support"
+	depends on SOC_EXYNOS7580
+	depends on CPU_FREQ
+	help
+		Enable Dynamic CLUSTER Hotplug
+
+config EXYNOS_CONTENT_PATH_PROTECTION
+	bool "Exynos Content Path Protection"
+	depends on ARM_TRUSTZONE
+	default n
+	help
+	  Enable content path protection of EXYNOS.
+
+config EXYNOS5_SETUP_MIPIPHY
+	bool
+	depends on (VIDEO_EXYNOS_FIMC_IS || DECON_MIPI_DSI || EXYNOS_MIPI_DSI)
+	default y
+	help
+	  Compile in common setup code for MIPI-CSIS devices
+config SOFT_TASK_MIGRATION
+	bool
+	depends on SCHED_HMP
+	default n
+	help
+	  If big cluster is turned off when up migration happens,
+	  Turn the big cluster on first and then migrate the task up.
+
+if EXYNOS_ATAGS
+
+config EXYNOS_DEV_DMA
+	bool
+	help
+	  Compile in amba device definitions for DMA controller
+
+config EXYNOS4_DEV_AHCI
+	bool
+	help
+	  Compile in platform device definitions for AHCI
+
+config EXYNOS4_SETUP_FIMD0
+	bool
+	help
+	  Common setup code for FIMD0.
+
+config EXYNOS4_DEV_USB_OHCI
+	bool
+	help
+	  Compile in platform device definition for USB OHCI
+
+config EXYNOS4_SETUP_I2C1
+	bool
+	help
+	  Common setup code for i2c bus 1.
+
+config EXYNOS4_SETUP_I2C2
+	bool
+	help
+	  Common setup code for i2c bus 2.
+
+config EXYNOS4_SETUP_I2C3
+	bool
+	help
+	  Common setup code for i2c bus 3.
+
+config EXYNOS4_SETUP_I2C4
+	bool
+	help
+	  Common setup code for i2c bus 4.
+
+config EXYNOS4_SETUP_I2C5
+	bool
+	help
+	  Common setup code for i2c bus 5.
+
+config EXYNOS4_SETUP_I2C6
+	bool
+	help
+	  Common setup code for i2c bus 6.
+
+config EXYNOS4_SETUP_I2C7
+	bool
+	help
+	  Common setup code for i2c bus 7.
+
+config EXYNOS4_SETUP_KEYPAD
+	bool
+	help
+	  Common setup code for keypad.
+
+config EXYNOS4_SETUP_SDHCI
+	bool
+	select EXYNOS4_SETUP_SDHCI_GPIO
+	help
+	  Internal helper functions for EXYNOS4 based SDHCI systems.
+
+config EXYNOS4_SETUP_SDHCI_GPIO
+	bool
+	help
+	  Common setup code for SDHCI gpio.
+
+config EXYNOS4_SETUP_FIMC
+	bool
+	help
+	  Common setup code for the camera interfaces.
+
+config EXYNOS4_SETUP_USB_PHY
+	bool
+	help
+	  Common setup code for USB PHY controller
+
+config EXYNOS_SETUP_SPI
+	bool
+	help
+	  Common setup code for SPI GPIO configurations.
+
+endif
+
+comment "Flattened Device Tree based board for EXYNOS SoCs"
+
+config MACH_ESPRESSO7420
+	bool "SAMSUNG ESPRESSO7420 Machine using device tree"
+	select ARM_AMBA
+	select CLKSRC_OF
+	select USE_OF
+	select PINCTRL
+	select PINCTRL_EXYNOS
+	select S3C_DEV_RTC
+	select MIGHT_HAVE_PCI
+	select PCI_DOMAINS if PCI
+	help
+	  Machine support for Samsung EXYNOS7420 machine with device tree enabled.
+	  Select this if a fdt blob is available for the EXYNOS7420 SoC based board.
+
+config MACH_MV7420
+	bool "SAMSUNG MV7420 Machine using device tree"
+	select ARM_AMBA
+	select CLKSRC_OF
+	select USE_OF
+	select PINCTRL
+	select PINCTRL_EXYNOS
+	select S3C_DEV_RTC
+	select MIGHT_HAVE_PCI
+	select PCI_DOMAINS if PCI
+	help
+	  Machine support for Samsung MV7420 machine with device tree enabled.
+	  Select this if a fdt blob is available for the MV7420 SoC based board.
+
+choice
+	prompt "Kernel type selection for MV7420 "
+	depends on MACH_MV7420
+
+config ENG_KERNEL
+	bool "Build Eng Kernel"
+	help
+		Build Eng kernel
+
+config USER_KERNEL
+	bool "Build User Kernel"
+	help
+		Build User kernel
+
+config UNICOM_KERNEL
+	bool "Build Unicom Kernel"
+	help
+		Build Unicom kernel
+
+config OVERSEAS_KERNEL
+	bool "Build Overseas Kernel"
+	help
+		Build Overseas kernel
+
+config RECOVERY_KERNEL
+	bool "Build Recovery Kernel"
+	help
+		Build Recovery kernel
+
+config CHARGE_KERNEL
+	bool "Build Charge Kernel"
+	help
+		Build Charge kernel
+
+config FACTORY_KERNEL
+	bool "Build Factory Kernel"
+	help
+		Build factory kernel
+endchoice
+	  
+	  
+config SUPPORT_CODEGEN
+	bool "Support Code Generator on SAMSUNG MV7420 device tree platform"
+	help 
+	  Use device tree files matched with code generator tool.
+
+menuconfig MV7420_COMPONENT_LIST
+	bool "Support MV7420 Component List"
+	depends on SUPPORT_CODEGEN
+	default y
+
+if MV7420_COMPONENT_LIST
+
+config DTS_LCD_S6E3FA0
+	bool "Support Video Mode LCD Samsung S6E3FA0(1920X1080)"
+
+config DTS_CMDLCD_S6E3FA0
+	select DTS_CMD_LCD
+	bool "Support Command Mode LCD Samsung S6E3FA0(1920X1080)"
+
+config DTS_LCD_S6E3FA3
+	select DTS_CMD_LCD
+	bool "Support Command Mode LCD Samsung S6E3FA3(1920X1080)"
+	
+config DTS_LCD_S6E8AA0
+	bool "Support Video Mode LCD Samsung S6E8AA0(1280X720)"
+
+config DTS_LCD_S6E8FA0
+	bool "Support Video Mode LCD Samsung S6E8FA0(1920X1080)"
+
+config DTS_CMD_LCD
+	depends on DTS_CMDLCD_S6E3FA0 || DTS_LCD_S6E3FA3
+	bool "This is set if Command Mode LCD is used"
+
+config DTS_TOUCHSCREEN_ATMEL_MXTS
+	bool "Support Touch Screen ATMEL_MXTS"
+
+config DTS_TOUCHSCREEN_FTS
+	bool "Support Touch Screen FTS"
+	
+config DTS_TOUCHSCREEN_SYNAPTICS_DSX
+	bool "Support Touch Screen SYNAPTICS_DSX"
+	
+config DTS_TOUCHSCREEN_MELFAS
+	bool "Support Touch Screen MELFAS"
+
+config DTS_TSU6721_MUIC
+	bool "Support tsu6721 muic"
+	
+config DTS_BATTERY_CW2015
+	bool "Support Fuelguage CW2015"
+		
+config DTS_BATTERY_BQ27425
+	bool "Support Fuelguage TI BQ27425"
+			
+config DTS_BATTERY_BQ27441
+	bool "Support Fuelguage TI BQ27441"
+
+config DTS_CHARGER_BQ24297
+	bool "Support Charger BQ24297"
+
+config DTS_CHARGER_BQ24195
+	bool "Support Charger BQ24195"
+		
+config DTS_SENSOR_MPU6500
+	bool "Support Gyro/Ecompass/G-Sensor MPU6500"
+	
+config DTS_SENSOR_BMP180
+	bool "Support Pressure/Temperature-Sensor BMP180"
+	
+config DTS_SENSOR_TMD2771X
+	bool "Support L/P-Sensor TMD2771X"
+
+config DTS_FINGERPRINT_FPC1020
+	bool "Support FINGERPRINT sensor FPC1020"
+	
+config DTS_AUDIOCODEC_RT5647
+	bool "Support Audio Codec RT5647"
+
+config DTS_AUDIOCODEC_WM5110
+	bool "Support Audio Codec WM5110"
+	
+config DTS_AUDIOCODEC_WM8998
+	bool "Support Audio Codec WM8998"
+	
+config DTS_NC_ES705
+	bool "Support Audio Noise Cacellation ES705"
+
+config DTS_HIFI_ESS9018K2M
+	bool "Support Audio HIFI ESS9018K2M"
+
+config DTS_PA_TFA9890
+	bool "Support Audio PA TFA9890"	
+
+config DTS_ESE_NXP
+	bool "Support embeded Security element NXP"
+	
+config DTS_MODEM_SHANNON333
+	bool "Support modem Shannon333"	
+
+config DTS_HDMI
+	bool "Support HDMI Video/Audio"	
+	
+config DTS_HDMI_EDID
+	bool "Support HDMI EDID"
+	depends on DTS_HDMI
+
+config DTS_HDMI_HDCP
+	bool "Support HDMI HDCP"
+	depends on DTS_HDMI
+
+config DTS_WIFI_BCM43241
+	bool "Support WIFI BCM43241"
+
+config DTS_BT_BCM43241
+	bool "Support Bluetooth BCM43241"
+
+config DTS_WIFI_BCM4339
+	bool "Support WIFI BCM4339"
+
+config DTS_BT_BCM4339
+	bool "Support Bluetooth BCM4339"
+
+
+config DTS_WIFI_BCM4358
+	bool "Support WIFI BCM4358"
+
+config DTS_BT_BCM4358
+	bool "Support Bluetooth BCM4358"
+	
+
+config DTS_WIFI_BCM43455
+	bool "Support WIFI BCM43455"
+
+config DTS_BT_BCM43455
+	bool "Support Bluetooth BCM43455"
+	
+config DTS_GPS_BCM47531
+	bool "Support GPS BCM47531"	
+		
+config DTS_EMMC_SAMSUNG
+	bool "Support Samsung eMMC Storage"
+	
+config DTS_UFS_SAMSUNG	
+	bool "Support Samsung UFS Storage"
+
+config DTS_CONSOLE_UART
+	bool "Support UART Console for Debug"
+
+config DTS_CONSOLE_FIQ
+	bool "Support FIQ Console for Debug"
+
+endif	  
+
+config MACH_MV7420_HD
+	bool "SAMSUNG MV7420 HD Machine using device tree"
+	select ARM_AMBA
+	select CLKSRC_OF
+	select USE_OF
+	select PINCTRL
+	select PINCTRL_EXYNOS
+	select S3C_DEV_RTC
+	select MIGHT_HAVE_PCI
+	select PCI_DOMAINS if PCI
+	help
+	  Machine support for Samsung MV7420 machine with device tree enabled.
+	  Select this if a fdt blob is available for the MV7420 SoC based board.
+
+config MACH_MV7420_FHD
+	bool "SAMSUNG MV7420 FHD Machine using device tree"
+	select ARM_AMBA
+	select CLKSRC_OF
+	select USE_OF
+	select PINCTRL
+	select PINCTRL_EXYNOS
+	select S3C_DEV_RTC
+	select MIGHT_HAVE_PCI
+	select PCI_DOMAINS if PCI
+	help
+	  Machine support for Samsung MV7420 machine with device tree enabled.
+	  Select this if a fdt blob is available for the MV7420 SoC based board.
+
+config MACH_SMDK7580
+	bool "SAMSUNG SMDK7580 Machine using device tree"
+	select ARM_AMBA
+	select USE_OF
+	select PINCTRL
+	select PINCTRL_EXYNOS
+	help
+	  Machine support for Samsung EXYNOS7580 machine with device tree enabled.
+	  Select this if a fdt blob is available for the EXYNOS7580 SoC based board.
+
+endmenu
+
+choice
+	prompt "Type of Periodic Devfreq method"
+	default DELAYED_INVOKING
+	help
+		This option sets which type of Workqueue shall be used for periodic execution. 
+		Such as, DEVFREQ, MIF DTM, Cluster On/Off Monitoring, PPMU Monitoring, and Main DTM
+
+config DELAYED_INVOKING
+	bool "Use delayed workqueue"
+	help
+		Use the INIT_DELAYED_WORK() for Devfreq
+
+config DEFERRABLE_INVOKING
+	bool "Use deferrable workqueue"
+	help
+		Use the INIT_DEFERRABLE_WORK() for Devfreq
+
+config HYBRID_INVOKING
+	bool "Use hybrid workqueue"
+	help
+		Use the Hybrid WQ (both DELAYED and DEFERRABLE) for Devfreq
+
+endchoice
+
+# Reset IPs during LPA/DSTOP
+config EXYNOS_SPI_RESET_DURING_DSTOP
+	bool
+
+endif

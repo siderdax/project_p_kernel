@@ -1,0 +1,76 @@
+
+#include "mv7420-uart-codegen.h"
+#include "mv7420-gpio-codegen.h"
+
+#ifdef CONFIG_DTS_CONSOLE_UART
+&debug_port_uart {
+		/* Enable UART channel for debug port */
+		pinctrl-names = "default";
+		pinctrl-0 = <&uart2_bus>, <&dbg_if>;
+		status = "okay";
+};
+#endif
+
+&serial0_uart {
+		status = "okay";
+};
+&serial1_uart {
+		status = "okay";
+};
+&serial3_uart {
+		status = "okay";
+};
+&serial4_uart {
+		pinctrl-0 = <&uart_bt_active &uart_bt_output_sleep &uart_bt_input_sleep>;
+		status = "okay";
+};
+
+#ifdef CONFIG_DTS_BT_BCM4339
+&bcm4339_uart {
+		/* Enable AUD UART channel for bluetooth */
+		status = "okay";
+		bluetooth {
+			compatible = "broadcom,bcm4339";
+			gpios = <&bt_en_bank bt_en_pin bt_en_func/*BT_EN*/
+					&bt_wake_bank bt_wake_pin bt_wake_func/*BT_WAKE*/
+					&bt_host_wake_bank bt_host_wake_pin bt_host_wake_func/*BT_HOST_WAKE*/ >;
+			pinctrl-names = "default";
+			pinctrl-0=<&cfg_hostwake &cfg_btwake &cfg_en>;
+			status = "okay";
+		};
+};
+#endif
+
+#ifdef CONFIG_DTS_BT_BCM4358
+&bcm4358_uart {
+		/* Enable AUD UART channel for bluetooth */
+		status = "okay";
+		bluetooth {
+			compatible = "broadcom,bcm4358";
+
+			gpios = <&bt_en_bank bt_en_pin bt_en_func/*BT_EN*/
+					&bt_wake_bank bt_wake_pin bt_wake_func/*BT_WAKE*/
+					&bt_host_wake_bank bt_host_wake_pin bt_host_wake_func/*BT_HOST_WAKE*/ >;
+			pinctrl-names = "default";
+			pinctrl-0=<&cfg_hostwake &cfg_btwake &cfg_en>;
+			status = "okay";
+		};
+};
+#endif
+#ifdef CONFIG_DTS_BT_BCM43241
+&bcm43241_uart {
+		/* Enable AUD UART channel for bluetooth */
+		//status = "disabled";
+		status = "okay";
+		bluetooth {
+			compatible = "broadcom,bcm43241";
+
+			gpios = <&bt_en_bank bt_en_pin bt_en_func/*BT_EN*/
+					&bt_wake_bank bt_wake_pin bt_wake_func/*BT_WAKE*/
+					&bt_host_wake_bank bt_host_wake_pin bt_host_wake_func/*BT_HOST_WAKE*/ >;
+			pinctrl-names = "default";
+			pinctrl-0=<&cfg_hostwake &cfg_btwake &cfg_en>;
+			status = "okay";
+		};
+};
+#endif

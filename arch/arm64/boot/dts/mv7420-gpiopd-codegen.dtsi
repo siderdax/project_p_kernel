@@ -1,0 +1,344 @@
+
+#include "exynos7420-pinctrl-def.h"
+#include "mv7420-gpiopd-codegen.h"
+
+//gpa0~gpa3
+&pinctrl_0 {
+	pinctrl-names = "sleep";
+	pinctrl-0 = <&sleep0>;
+	sleep0: sleep-state {
+		PIN_ALIVE_SLP(gpa0-0, 	gpa0_0_pdn_mode, 	gpa0_0_pdn_pull, 	gpa0_0_pdn_val);      
+		PIN_ALIVE_SLP(gpa0-1,	gpa0_1_pdn_mode,	gpa0_1_pdn_pull,	gpa0_1_pdn_val);
+		PIN_ALIVE_SLP(gpa0-2,	gpa0_2_pdn_mode,	gpa0_2_pdn_pull,	gpa0_2_pdn_val); 
+		//PIN_ALIVE_SLP(gpa0-3,	gpa0_3_pdn_mode,	gpa0_3_pdn_pull,	gpa0_3_pdn_val); 	
+		PIN_ALIVE_SLP(gpa0-4,	gpa0_4_pdn_mode,	gpa0_4_pdn_pull,	gpa0_4_pdn_val);      
+		PIN_ALIVE_SLP(gpa0-5,	gpa0_5_pdn_mode,	gpa0_5_pdn_pull,	gpa0_5_pdn_val);
+		PIN_ALIVE_SLP(gpa0-6,	gpa0_6_pdn_mode,	gpa0_6_pdn_pull,	gpa0_6_pdn_val); 
+		PIN_ALIVE_SLP(gpa0-7,	gpa0_7_pdn_mode,	gpa0_7_pdn_pull,	gpa0_7_pdn_val); 
+
+		PIN_ALIVE_SLP(gpa1-0, 	gpa1_0_pdn_mode, 	gpa1_0_pdn_pull, 	gpa1_0_pdn_val);      
+		PIN_ALIVE_SLP(gpa1-1,	gpa1_1_pdn_mode,	gpa1_1_pdn_pull,	gpa1_1_pdn_val);
+		PIN_ALIVE_SLP(gpa1-2,	gpa1_2_pdn_mode,	gpa1_2_pdn_pull,	gpa1_2_pdn_val); 
+		PIN_ALIVE_SLP(gpa1-3,	gpa1_3_pdn_mode,	gpa1_3_pdn_pull,	gpa1_3_pdn_val); 
+		PIN_ALIVE_SLP(gpa1-4,	gpa1_4_pdn_mode,	gpa1_4_pdn_pull,	gpa1_4_pdn_val);      
+		PIN_ALIVE_SLP(gpa1-5,	gpa1_5_pdn_mode,	gpa1_5_pdn_pull,	gpa1_5_pdn_val);
+		PIN_ALIVE_SLP(gpa1-6,	gpa1_6_pdn_mode,	gpa1_6_pdn_pull,	gpa1_6_pdn_val); 
+		PIN_ALIVE_SLP(gpa1-7,	gpa1_7_pdn_mode,	gpa1_7_pdn_pull,	gpa1_7_pdn_val); 
+
+		PIN_ALIVE_SLP(gpa2-0, 	gpa2_0_pdn_mode, 	gpa2_0_pdn_pull, 	gpa2_0_pdn_val);      
+		PIN_ALIVE_SLP(gpa2-1,	gpa2_1_pdn_mode,	gpa2_1_pdn_pull,	gpa2_1_pdn_val);
+		PIN_ALIVE_SLP(gpa2-2,	gpa2_2_pdn_mode,	gpa2_2_pdn_pull,	gpa2_2_pdn_val); 
+		PIN_ALIVE_SLP(gpa2-3,	gpa2_3_pdn_mode,	gpa2_3_pdn_pull,	gpa2_3_pdn_val); 
+		PIN_ALIVE_SLP(gpa2-4,	gpa2_4_pdn_mode,	gpa2_4_pdn_pull,	gpa2_4_pdn_val);      
+		PIN_ALIVE_SLP(gpa2-5,	gpa2_5_pdn_mode,	gpa2_5_pdn_pull,	gpa2_5_pdn_val);
+		PIN_ALIVE_SLP(gpa2-6,	gpa2_6_pdn_mode,	gpa2_6_pdn_pull,	gpa2_6_pdn_val); 
+		PIN_ALIVE_SLP(gpa2-7,	gpa2_7_pdn_mode,	gpa2_7_pdn_pull,	gpa2_7_pdn_val); 
+
+		PIN_ALIVE_SLP(gpa3-0, 	gpa3_0_pdn_mode, 	gpa3_0_pdn_pull, 	gpa3_0_pdn_val);    
+		PIN_ALIVE_SLP(gpa3-1,	gpa3_1_pdn_mode,	gpa3_1_pdn_pull,	gpa3_1_pdn_val);
+		PIN_ALIVE_SLP(gpa3-2,	gpa3_2_pdn_mode,	gpa3_2_pdn_pull,	gpa3_2_pdn_val); 
+		PIN_ALIVE_SLP(gpa3-3,	gpa3_3_pdn_mode,	gpa3_3_pdn_pull,	gpa3_3_pdn_val); 
+		PIN_ALIVE_SLP(gpa3-4,	gpa3_4_pdn_mode,	gpa3_4_pdn_pull,	gpa3_4_pdn_val);      
+		PIN_ALIVE_SLP(gpa3-5,	gpa3_5_pdn_mode,	gpa3_5_pdn_pull,	gpa3_5_pdn_val);
+		PIN_ALIVE_SLP(gpa3-6,	gpa3_6_pdn_mode,	gpa3_6_pdn_pull,	gpa3_6_pdn_val); 
+		PIN_ALIVE_SLP(gpa3-7,	gpa3_7_pdn_mode,	gpa3_7_pdn_pull,	gpa3_7_pdn_val); 	
+	};
+};
+
+//gpz0,gpz1
+&pinctrl_1 {
+	pinctrl-names = "sleep";
+	pinctrl-0 = <&sleep1>;
+	sleep1: sleep-state {
+		PIN_SLP(gpz0-0, gpz0_0_pdn_mode, gpz0_0_pdn_pull);
+		PIN_SLP(gpz0-1, gpz0_1_pdn_mode, gpz0_1_pdn_pull);
+		PIN_SLP(gpz0-2, gpz0_2_pdn_mode, gpz0_2_pdn_pull);
+		PIN_SLP(gpz0-3, gpz0_3_pdn_mode, gpz0_3_pdn_pull);
+		PIN_SLP(gpz0-4, gpz0_4_pdn_mode, gpz0_4_pdn_pull);
+		PIN_SLP(gpz0-5, gpz0_5_pdn_mode, gpz0_5_pdn_pull);
+		PIN_SLP(gpz0-6, gpz0_6_pdn_mode, gpz0_6_pdn_pull);
+		
+		PIN_SLP(gpz1-0, gpz1_0_pdn_mode, gpz1_0_pdn_pull);
+		PIN_SLP(gpz1-1, gpz1_1_pdn_mode, gpz1_1_pdn_pull);
+		PIN_SLP(gpz1-2, gpz1_2_pdn_mode, gpz1_2_pdn_pull);
+		PIN_SLP(gpz1-3, gpz1_3_pdn_mode, gpz1_3_pdn_pull);
+	};
+};
+
+//gpb0,gpc0~gpc3,gpd0~gpd2,gpd4~gpd8,gpg0,gpg3
+&pinctrl_2 {
+	pinctrl-names = "sleep";
+	pinctrl-0 = <&sleep2>;
+
+	sleep2: sleep-state {
+
+		PIN_SLP(gpb0-0, gpb0_0_pdn_mode, gpb0_0_pdn_pull);
+		PIN_SLP(gpb0-1, gpb0_1_pdn_mode, gpb0_1_pdn_pull);
+
+		PIN_SLP(gpb0-2, gpb0_2_pdn_mode, gpb0_2_pdn_pull);
+		PIN_SLP(gpb0-3, gpb0_3_pdn_mode, gpb0_3_pdn_pull);
+		PIN_SLP(gpb0-4, gpb0_4_pdn_mode, gpb0_4_pdn_pull);
+
+		PIN_SLP(gpc0-0, gpc0_0_pdn_mode, gpc0_0_pdn_pull);
+		PIN_SLP(gpc0-1, gpc0_1_pdn_mode, gpc0_1_pdn_pull);
+		PIN_SLP(gpc0-2, gpc0_2_pdn_mode, gpc0_2_pdn_pull);
+		PIN_SLP(gpc0-3, gpc0_3_pdn_mode, gpc0_3_pdn_pull);
+		PIN_SLP(gpc0-4, gpc0_4_pdn_mode, gpc0_4_pdn_pull);	
+		PIN_SLP(gpc0-5, gpc0_5_pdn_mode, gpc0_5_pdn_pull);
+		PIN_SLP(gpc0-6, gpc0_6_pdn_mode, gpc0_6_pdn_pull);	
+		PIN_SLP(gpc0-7, gpc0_7_pdn_mode, gpc0_7_pdn_pull);
+
+		PIN_SLP(gpc1-0, gpc1_0_pdn_mode, gpc1_0_pdn_pull);
+		PIN_SLP(gpc1-1, gpc1_1_pdn_mode, gpc1_1_pdn_pull);
+
+		PIN_SLP(gpc2-0, gpc2_0_pdn_mode, gpc2_0_pdn_pull);	
+		PIN_SLP(gpc2-1, gpc2_1_pdn_mode, gpc2_1_pdn_pull);
+		PIN_SLP(gpc2-2, gpc2_2_pdn_mode, gpc2_2_pdn_pull);	
+		PIN_SLP(gpc2-3, gpc2_3_pdn_mode, gpc2_3_pdn_pull);
+		PIN_SLP(gpc2-4, gpc2_4_pdn_mode, gpc2_4_pdn_pull);	
+		PIN_SLP(gpc2-5, gpc2_5_pdn_mode, gpc2_5_pdn_pull);
+
+		PIN_SLP(gpc3-0, gpc3_0_pdn_mode, gpc3_0_pdn_pull);
+		PIN_SLP(gpc3-1, gpc3_1_pdn_mode, gpc3_1_pdn_pull);
+		PIN_SLP(gpc3-2, gpc3_2_pdn_mode, gpc3_2_pdn_pull);
+		PIN_SLP(gpc3-3, gpc3_3_pdn_mode, gpc3_3_pdn_pull);
+		PIN_SLP(gpc3-4, gpc3_4_pdn_mode, gpc3_4_pdn_pull);	
+		PIN_SLP(gpc3-5, gpc3_5_pdn_mode, gpc3_5_pdn_pull);
+		PIN_SLP(gpc3-6, gpc3_6_pdn_mode, gpc3_6_pdn_pull);	
+		PIN_SLP(gpc3-7, gpc3_7_pdn_mode, gpc3_7_pdn_pull);
+
+		PIN_SLP(gpd0-0, gpd0_0_pdn_mode, gpd0_0_pdn_pull);
+		PIN_SLP(gpd0-1, gpd0_1_pdn_mode, gpd0_1_pdn_pull);
+		PIN_SLP(gpd0-2, gpd0_2_pdn_mode, gpd0_2_pdn_pull);
+		PIN_SLP(gpd0-3, gpd0_3_pdn_mode, gpd0_3_pdn_pull);
+
+		PIN_SLP(gpd1-0, gpd1_0_pdn_mode, gpd1_0_pdn_pull);
+		PIN_SLP(gpd1-1, gpd1_1_pdn_mode, gpd1_1_pdn_pull);
+		PIN_SLP(gpd1-2, gpd1_2_pdn_mode, gpd1_2_pdn_pull);
+		PIN_SLP(gpd1-3, gpd1_3_pdn_mode, gpd1_3_pdn_pull);
+		PIN_SLP(gpd1-4, gpd1_4_pdn_mode, gpd1_4_pdn_pull);
+		PIN_SLP(gpd1-5, gpd1_5_pdn_mode, gpd1_5_pdn_pull);
+
+		PIN_SLP(gpd2-0, gpd2_0_pdn_mode, gpd2_0_pdn_pull);
+		PIN_SLP(gpd2-1, gpd2_1_pdn_mode, gpd2_1_pdn_pull);
+		PIN_SLP(gpd2-2, gpd2_2_pdn_mode, gpd2_2_pdn_pull);
+		PIN_SLP(gpd2-3, gpd2_3_pdn_mode, gpd2_3_pdn_pull);
+		PIN_SLP(gpd2-4, gpd2_4_pdn_mode, gpd2_4_pdn_pull);
+		PIN_SLP(gpd2-5, gpd2_5_pdn_mode, gpd2_5_pdn_pull);
+		PIN_SLP(gpd2-6, gpd2_6_pdn_mode, gpd2_6_pdn_pull);
+		PIN_SLP(gpd2-7, gpd2_7_pdn_mode, gpd2_7_pdn_pull);
+
+		PIN_SLP(gpd4-0, gpd4_0_pdn_mode, gpd4_0_pdn_pull);
+		PIN_SLP(gpd4-1, gpd4_1_pdn_mode, gpd4_1_pdn_pull);
+		PIN_SLP(gpd4-2, gpd4_2_pdn_mode, gpd4_2_pdn_pull);
+		PIN_SLP(gpd4-3, gpd4_3_pdn_mode, gpd4_3_pdn_pull);
+		PIN_SLP(gpd4-4, gpd4_4_pdn_mode, gpd4_4_pdn_pull);
+
+		PIN_SLP(gpd5-0, gpd5_0_pdn_mode, gpd5_0_pdn_pull);	
+		PIN_SLP(gpd5-1, gpd5_1_pdn_mode, gpd5_1_pdn_pull);
+		PIN_SLP(gpd5-2, gpd5_2_pdn_mode, gpd5_2_pdn_pull);	
+		PIN_SLP(gpd5-3, gpd5_3_pdn_mode, gpd5_3_pdn_pull);
+
+		PIN_SLP(gpd6-0, gpd6_0_pdn_mode, gpd6_0_pdn_pull);
+		PIN_SLP(gpd6-1, gpd6_1_pdn_mode, gpd6_1_pdn_pull);
+		PIN_SLP(gpd6-2, gpd6_2_pdn_mode, gpd6_2_pdn_pull);
+		PIN_SLP(gpd6-3, gpd6_3_pdn_mode, gpd6_3_pdn_pull);
+		PIN_SLP(gpd6-4, gpd6_4_pdn_mode, gpd6_4_pdn_pull);
+		PIN_SLP(gpd6-5, gpd6_5_pdn_mode, gpd6_5_pdn_pull);
+
+		PIN_SLP(gpd7-0, gpd7_0_pdn_mode, gpd7_0_pdn_pull);
+		PIN_SLP(gpd7-1, gpd7_1_pdn_mode, gpd7_1_pdn_pull);
+		PIN_SLP(gpd7-2, gpd7_2_pdn_mode, gpd7_2_pdn_pull);
+
+		PIN_SLP(gpd8-0, gpd8_0_pdn_mode, gpd8_0_pdn_pull);
+		PIN_SLP(gpd8-1, gpd8_1_pdn_mode, gpd8_1_pdn_pull);
+
+		PIN_SLP(gpg0-0, gpg0_0_pdn_mode, gpg0_0_pdn_pull);
+		PIN_SLP(gpg0-1, gpg0_1_pdn_mode, gpg0_1_pdn_pull);
+
+		PIN_SLP(gpg3-0, gpg3_0_pdn_mode, gpg3_0_pdn_pull);
+		PIN_SLP(gpg3-1, gpg3_1_pdn_mode, gpg3_1_pdn_pull);
+		PIN_SLP(gpg3-2, gpg3_2_pdn_mode, gpg3_2_pdn_pull);
+		PIN_SLP(gpg3-3, gpg3_3_pdn_mode, gpg3_3_pdn_pull);
+	};
+};
+
+//gpf0~gpf5,gpg1,gpg2,gph1,gpv6
+&pinctrl_3 {
+	pinctrl-names = "sleep";
+	pinctrl-0 = <&sleep3>;
+
+	sleep3: sleep-state {
+
+		PIN_SLP(gpf0-0, gpf0_0_pdn_mode, gpf0_0_pdn_pull);
+		PIN_SLP(gpf0-1, gpf0_1_pdn_mode, gpf0_1_pdn_pull);
+		PIN_SLP(gpf0-2, gpf0_2_pdn_mode, gpf0_2_pdn_pull);/*there is error :can not wakeup*/
+		PIN_SLP(gpf0-3, gpf0_3_pdn_mode, gpf0_3_pdn_pull);/*there is error :can not wakeup*/
+		PIN_SLP(gpf0-4, gpf0_4_pdn_mode, gpf0_4_pdn_pull);	
+		PIN_SLP(gpf0-5, gpf0_5_pdn_mode, gpf0_5_pdn_pull);
+		PIN_SLP(gpf0-6, gpf0_6_pdn_mode, gpf0_6_pdn_pull);	
+		PIN_SLP(gpf0-7, gpf0_7_pdn_mode, gpf0_7_pdn_pull);
+
+		PIN_SLP(gpf1-0, gpf1_0_pdn_mode, gpf1_0_pdn_pull);
+		PIN_SLP(gpf1-1, gpf1_1_pdn_mode, gpf1_1_pdn_pull);
+		PIN_SLP(gpf1-2, gpf1_2_pdn_mode, gpf1_2_pdn_pull);
+		PIN_SLP(gpf1-3, gpf1_3_pdn_mode, gpf1_3_pdn_pull);
+		PIN_SLP(gpf1-4, gpf1_4_pdn_mode, gpf1_4_pdn_pull);	
+		PIN_SLP(gpf1-5, gpf1_5_pdn_mode, gpf1_5_pdn_pull);
+		PIN_SLP(gpf1-6, gpf1_6_pdn_mode, gpf1_6_pdn_pull);	
+		PIN_SLP(gpf1-7, gpf1_7_pdn_mode, gpf1_7_pdn_pull);
+
+		PIN_SLP(gpf2-0, gpf2_0_pdn_mode, gpf2_0_pdn_pull);
+		PIN_SLP(gpf2-1, gpf2_1_pdn_mode, gpf2_1_pdn_pull);
+		PIN_SLP(gpf2-2, gpf2_2_pdn_mode, gpf2_2_pdn_pull);
+		PIN_SLP(gpf2-3, gpf2_3_pdn_mode, gpf2_3_pdn_pull);
+
+		PIN_SLP(gpf3-0, gpf3_0_pdn_mode, gpf3_0_pdn_pull);
+		PIN_SLP(gpf3-1, gpf3_1_pdn_mode, gpf3_1_pdn_pull);
+		PIN_SLP(gpf3-2, gpf3_2_pdn_mode, gpf3_2_pdn_pull);
+		PIN_SLP(gpf3-3, gpf3_3_pdn_mode, gpf3_3_pdn_pull);
+		PIN_SLP(gpf3-4, gpf3_4_pdn_mode, gpf3_4_pdn_pull);	
+
+		PIN_SLP(gpf4-0, gpf4_0_pdn_mode, gpf4_0_pdn_pull);
+		PIN_SLP(gpf4-1, gpf4_1_pdn_mode, gpf4_1_pdn_pull);
+		PIN_SLP(gpf4-2, gpf4_2_pdn_mode, gpf4_2_pdn_pull);
+		PIN_SLP(gpf4-3, gpf4_3_pdn_mode, gpf4_3_pdn_pull);
+		PIN_SLP(gpf4-4, gpf4_4_pdn_mode, gpf4_4_pdn_pull);	
+		PIN_SLP(gpf4-5, gpf4_5_pdn_mode, gpf4_5_pdn_pull);
+		PIN_SLP(gpf4-6, gpf4_6_pdn_mode, gpf4_6_pdn_pull);	
+		PIN_SLP(gpf4-7, gpf4_7_pdn_mode, gpf4_7_pdn_pull);
+
+		PIN_SLP(gpf5-0, gpf5_0_pdn_mode, gpf5_0_pdn_pull);
+		PIN_SLP(gpf5-1, gpf5_1_pdn_mode, gpf5_1_pdn_pull);
+		PIN_SLP(gpf5-2, gpf5_2_pdn_mode, gpf5_2_pdn_pull);
+		PIN_SLP(gpf5-3, gpf5_3_pdn_mode, gpf5_3_pdn_pull);
+		PIN_SLP(gpf5-4, gpf5_4_pdn_mode, gpf5_4_pdn_pull);	
+		PIN_SLP(gpf5-5, gpf5_5_pdn_mode, gpf5_5_pdn_pull);
+		PIN_SLP(gpf5-6, gpf5_6_pdn_mode, gpf5_6_pdn_pull);	
+		PIN_SLP(gpf5-7, gpf5_7_pdn_mode, gpf5_7_pdn_pull);
+
+		PIN_SLP(gpg1-0, gpg1_0_pdn_mode, gpg1_0_pdn_pull);
+		PIN_SLP(gpg1-1, gpg1_1_pdn_mode, gpg1_1_pdn_pull);
+		PIN_SLP(gpg1-2, gpg1_2_pdn_mode, gpg1_2_pdn_pull);
+		PIN_SLP(gpg1-3, gpg1_3_pdn_mode, gpg1_3_pdn_pull);
+		PIN_SLP(gpg1-4, gpg1_4_pdn_mode, gpg1_4_pdn_pull);
+
+		PIN_SLP(gpg2-0, gpg2_0_pdn_mode, gpg2_0_pdn_pull);
+		PIN_SLP(gpg2-1, gpg2_1_pdn_mode, gpg2_1_pdn_pull);
+		PIN_SLP(gpg2-2, gpg2_2_pdn_mode, gpg2_2_pdn_pull);
+		PIN_SLP(gpg2-3, gpg2_3_pdn_mode, gpg2_3_pdn_pull);
+		PIN_SLP(gpg2-4, gpg2_4_pdn_mode, gpg2_4_pdn_pull);
+
+		PIN_SLP(gph1-0, gph1_0_pdn_mode, gph1_0_pdn_pull);
+		PIN_SLP(gph1-1, gph1_1_pdn_mode, gph1_1_pdn_pull);
+		PIN_SLP(gph1-2, gph1_2_pdn_mode, gph1_2_pdn_pull);
+		PIN_SLP(gph1-3, gph1_3_pdn_mode, gph1_3_pdn_pull);
+		PIN_SLP(gph1-4, gph1_4_pdn_mode, gph1_4_pdn_pull);	
+		PIN_SLP(gph1-5, gph1_5_pdn_mode, gph1_5_pdn_pull);
+
+		PIN_SLP(gpv6-0, gpv6_0_pdn_mode, gpv6_0_pdn_pull);/*error :wakeup*/
+		PIN_SLP(gpv6-1, gpv6_1_pdn_mode, gpv6_1_pdn_pull);
+		PIN_SLP(gpv6-2, gpv6_2_pdn_mode, gpv6_2_pdn_pull);
+
+	};
+};
+
+//gpj0
+&pinctrl_4 {
+	pinctrl-names = "sleep";
+	pinctrl-0 = <&sleep4>;
+	sleep4: sleep-state {
+		PIN_SLP(gpj0-0, gpj0_0_pdn_mode, gpj0_0_pdn_pull);
+		PIN_SLP(gpj0-1, gpj0_1_pdn_mode, gpj0_1_pdn_pull);
+		PIN_SLP(gpj0-2, gpj0_2_pdn_mode, gpj0_2_pdn_pull);
+	};
+};
+
+//gpj1
+&pinctrl_5 {
+	pinctrl-names = "sleep";
+	pinctrl-0 = <&sleep5>;
+	sleep5: sleep-state {
+		PIN_SLP(gpj1-0, gpj1_0_pdn_mode, gpj1_0_pdn_pull);
+		PIN_SLP(gpj1-1, gpj1_1_pdn_mode, gpj1_1_pdn_pull);
+		PIN_SLP(gpj1-2, gpj1_2_pdn_mode, gpj1_2_pdn_pull);
+	};
+};
+
+//gpg4
+&pinctrl_6 {
+	pinctrl-names = "sleep";
+	pinctrl-0 = <&sleep6>;
+	sleep6: sleep-state {
+		PIN_SLP(gpg4-0, gpg4_0_pdn_mode, gpg4_0_pdn_pull);
+		PIN_SLP(gpg4-1, gpg4_1_pdn_mode, gpg4_1_pdn_pull);
+		PIN_SLP(gpg4-2, gpg4_2_pdn_mode, gpg4_2_pdn_pull);
+		PIN_SLP(gpg4-3, gpg4_3_pdn_mode, gpg4_3_pdn_pull);
+	};
+};
+
+//gpv7
+&pinctrl_7 {
+	pinctrl-names = "sleep";
+	pinctrl-0 = <&sleep7>;
+	sleep7: sleep-state {
+		PIN_SLP(gpv7-0, gpv7_0_pdn_mode, gpv7_0_pdn_pull);
+		PIN_SLP(gpv7-1, gpv7_1_pdn_mode, gpv7_1_pdn_pull);
+		PIN_SLP(gpv7-2, gpv7_2_pdn_mode, gpv7_2_pdn_pull);
+		PIN_SLP(gpv7-3, gpv7_3_pdn_mode, gpv7_3_pdn_pull);
+		PIN_SLP(gpv7-4, gpv7_4_pdn_mode, gpv7_4_pdn_pull);
+	};
+};
+
+//gpr4
+&pinctrl_8 {
+	pinctrl-names = "sleep";
+	pinctrl-0 = <&sleep8>;
+	sleep8: sleep-state {
+		PIN_SLP(gpr4-0, gpr4_0_pdn_mode, gpr4_0_pdn_pull);
+		PIN_SLP(gpr4-1, gpr4_1_pdn_mode, gpr4_1_pdn_pull);
+		PIN_SLP(gpr4-2, gpr4_2_pdn_mode, gpr4_2_pdn_pull);
+		PIN_SLP(gpr4-3, gpr4_3_pdn_mode, gpr4_3_pdn_pull);
+		PIN_SLP(gpr4-4, gpr4_4_pdn_mode, gpr4_4_pdn_pull);	
+		PIN_SLP(gpr4-5, gpr4_5_pdn_mode, gpr4_5_pdn_pull);
+		PIN_SLP(gpr4-6, gpr4_6_pdn_mode, gpr4_6_pdn_pull);
+	};
+};
+
+//gpr0~gpr3
+&pinctrl_9 {
+	pinctrl-names = "sleep";
+	pinctrl-0 = <&sleep9>;
+	sleep9: sleep-state {
+		PIN_SLP(gpr0-0, gpr0_0_pdn_mode, gpr0_0_pdn_pull);
+		PIN_SLP(gpr0-1, gpr0_1_pdn_mode, gpr0_1_pdn_pull);
+		PIN_SLP(gpr0-2, gpr0_2_pdn_mode, gpr0_2_pdn_pull);
+		PIN_SLP(gpr0-3, gpr0_3_pdn_mode, gpr0_3_pdn_pull);
+
+		PIN_SLP(gpr1-0, gpr1_0_pdn_mode, gpr1_0_pdn_pull);
+		PIN_SLP(gpr1-1, gpr1_1_pdn_mode, gpr1_1_pdn_pull);
+		PIN_SLP(gpr1-2, gpr1_2_pdn_mode, gpr1_2_pdn_pull);
+		PIN_SLP(gpr1-3, gpr1_3_pdn_mode, gpr1_3_pdn_pull);
+		PIN_SLP(gpr1-4, gpr1_4_pdn_mode, gpr1_4_pdn_pull);	
+		PIN_SLP(gpr1-5, gpr1_5_pdn_mode, gpr1_5_pdn_pull);
+		PIN_SLP(gpr1-6, gpr1_6_pdn_mode, gpr1_6_pdn_pull);
+		PIN_SLP(gpr1-7, gpr1_7_pdn_mode, gpr1_7_pdn_pull);
+
+		PIN_SLP(gpr2-0, gpr2_0_pdn_mode, gpr2_0_pdn_pull);
+		PIN_SLP(gpr2-1, gpr2_1_pdn_mode, gpr2_1_pdn_pull);
+		PIN_SLP(gpr2-2, gpr2_2_pdn_mode, gpr2_2_pdn_pull);
+		PIN_SLP(gpr2-3, gpr2_3_pdn_mode, gpr2_3_pdn_pull);
+		PIN_SLP(gpr2-4, gpr2_4_pdn_mode, gpr2_4_pdn_pull);
+
+		PIN_SLP(gpr3-0, gpr3_0_pdn_mode, gpr3_0_pdn_pull);
+		PIN_SLP(gpr3-1, gpr3_1_pdn_mode, gpr3_1_pdn_pull);
+		PIN_SLP(gpr3-2, gpr3_2_pdn_mode, gpr3_2_pdn_pull);
+		PIN_SLP(gpr3-3, gpr3_3_pdn_mode, gpr3_3_pdn_pull);
+		PIN_SLP(gpr3-4, gpr3_4_pdn_mode, gpr3_4_pdn_pull);	
+		PIN_SLP(gpr3-5, gpr3_5_pdn_mode, gpr3_5_pdn_pull);
+		PIN_SLP(gpr3-6, gpr3_6_pdn_mode, gpr3_6_pdn_pull);
+		PIN_SLP(gpr3-7, gpr3_7_pdn_mode, gpr3_7_pdn_pull);
+	};
+};
+
+

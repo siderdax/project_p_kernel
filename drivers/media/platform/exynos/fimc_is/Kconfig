@@ -1,0 +1,18 @@
+#
+# Copyright (c) 2012 Samsung Electronics Co., Ltd.
+#		http://www.samsung.com
+#
+# Licensed under GPLv2
+# 
+#  Kconfig for MV7420 camera git branch. 
+# by liping.qian@samsung.com
+
+if VIDEO_EXYNOS
+if SOC_EXYNOS7420
+	source "drivers/media/platform/exynos/fimc-is2/Kconfig"
+endif
+if !SOC_EXYNOS7420
+	source "drivers/media/platform/exynos/fimc-is/Kconfig"
+endif
+endif
+

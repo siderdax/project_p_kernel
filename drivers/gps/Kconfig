@@ -1,0 +1,4 @@
+config GPS_UBX7020
+	bool "UBLOX_GPS_CHIPSET_UBX7020"
+	default n
+

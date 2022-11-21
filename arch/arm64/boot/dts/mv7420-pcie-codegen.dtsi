@@ -1,0 +1,20 @@
+
+#include "mv7420-pcie-codegen.h"
+
+#ifdef CONFIG_DTS_WIFI_BCM4358
+&bcm4358_wifi_pcie {
+	pinctrl-names = "default", "pcie_reset";
+	pinctrl-0 = <&wifi_pcie_clkreq &wifi_pcie_perst &wifi_pcie_reset_clear >; /*&pcie_eint*/
+	pinctrl-1 = <&wifi_pcie_clkreq &wifi_pcie_perst &wifi_pcie_reset >; /*&pcie_eint*/
+	status = "okay";
+	wifi {
+		compatible = "samsung,brcm-wlan";
+
+		gpios = <&wifi_reg_on_bank wifi_reg_on_pin wifi_reg_on_func	/* WIFI_REG_ON */
+			&wifi_host_wake_bank wifi_host_wake_pin wifi_host_wake_func>;  /* WLAN_HOST_WAKE */
+		pinctrl-names = "default";
+		pinctrl-0=<&cfg_wlanen &cfg_wlanhostwake>;
+		status="okay";
+	};
+};	
+#endif

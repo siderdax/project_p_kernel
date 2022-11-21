@@ -1,0 +1,122 @@
+
+#include "mv7420-dsim-codegen.h"
+
+#ifdef CONFIG_DTS_LCD_S6E3FA3
+&s6e3fa3_dsim {
+	lcd_info = <&s6e3fa3>;
+	/* lcd reset, power */
+	gpios = <&s6e3fa3_dsim_lcd_rst_bank s6e3fa3_dsim_lcd_rst_pin s6e3fa3_dsim_lcd_rst_func>, 
+				<&s6e3fa3_dsim_lcd_power_bank s6e3fa3_dsim_lcd_power_pin s6e3fa3_dsim_lcd_power_func>;
+	status = "okay";
+	s6e3fa3: s6e3fa3_fhd {
+	    	compatible = "samsung,s6e3fa3";
+      		mode = <2>;
+      		resolution = <1080 1920>;
+      		size = <72 147>;
+      		timing,refresh = <60>;
+      		timing,h-porch = <1 1 1>;
+      		timing,v-porch = <15 1 1>;
+      		timing,dsi-hs-clk = <960>;
+      		timing,dsi-escape-clk = <20>;
+      		mic = <0>;
+      		mic_ver = <1>;         /* 0: mic v1.1, 1: v1.2, 2: v2.0 */
+      		type_of_ddi = <0>; /* 0:Samsung Mobile */
+	};
+};	
+#endif
+
+#ifdef CONFIG_DTS_LCD_S6E3FA0
+&s6e3fa0_dsim {
+	lcd_info = <&s6e3fa0>;
+	/* lcd reset, power */
+	gpios = <&s6e3fa0_dsim_lcd_rst_bank s6e3fa0_dsim_lcd_rst_pin s6e3fa0_dsim_lcd_rst_func>, 
+				<&s6e3fa0_dsim_lcd_power_bank s6e3fa0_dsim_lcd_power_pin s6e3fa0_dsim_lcd_power_func>;
+	status = "okay";
+	s6e3fa0: s6e3fa0_fhd {
+		compatible = "samsung,s6e3fa0";
+		mode = <0>; /* 2: MIPI command mode */
+		resolution = <1080 1920>;
+		size = <70 121>;
+		timing,refresh = <60>;
+		timing,h-porch = <20 20 20>;
+		timing,v-porch = <20 2 2>;
+		timing,dsi-hs-clk = <1100>;
+		timing,dsi-escape-clk = <20>;
+		mic = <0>;
+		mic_ver = <1>;		/* 0: mic v1.1, 1: v1.2, 2: v2.0 */
+		type_of_ddi = <0>; /* 0:Samsung Mobile */
+	};
+};
+#endif
+
+#ifdef CONFIG_DTS_CMDLCD_S6E3FA0
+&s6e3fa0_dsim {
+	lcd_info = <&s6e3fa0>;
+	/* lcd reset, power */
+	gpios = <&s6e3fa0_dsim_lcd_rst_bank s6e3fa0_dsim_lcd_rst_pin s6e3fa0_dsim_lcd_rst_func>, 
+				<&s6e3fa0_dsim_lcd_power_bank s6e3fa0_dsim_lcd_power_pin s6e3fa0_dsim_lcd_power_func>;
+	status = "okay";
+	s6e3fa0: s6e3fa0_fhd {
+		compatible = "samsung,s6e3fa0";
+		mode = <2>; /* 2: MIPI command mode */
+		resolution = <1080 1920>;
+		size = <70 121>;
+		timing,refresh = <60>;
+		timing,h-porch = <1 1 1>;
+		timing,v-porch = <10 1 1>;
+		timing,dsi-hs-clk = <1100>;
+		timing,dsi-escape-clk = <20>;
+		mic = <0>;
+		mic_ver = <1>;		/* 0: mic v1.1, 1: v1.2, 2: v2.0 */
+		type_of_ddi = <0>; /* 0:Samsung Mobile */
+	};
+};
+#endif
+
+#ifdef CONFIG_DTS_LCD_S6E8AA0
+&s6e8aa0_dsim {
+	lcd_info = <&s6e8aa0>;
+	/* lcd reset, power */
+	gpios = <&s6e8aa0_dsim_lcd_rst_bank s6e8aa0_dsim_lcd_rst_pin s6e8aa0_dsim_lcd_rst_func>, 
+				<&s6e8aa0_dsim_lcd_power_bank s6e8aa0_dsim_lcd_power_pin s6e8aa0_dsim_lcd_power_func>;
+	status = "okay";
+	s6e8aa0: s6e8aa0_hd {
+      		compatible = "samsung,s6e8aa0";
+      		mode = <0>; /* 0: MIPI video mode */
+      		resolution = <720 1280>;
+      		size = <71 114>;
+      		timing,refresh = <60>;
+      		timing,h-porch = <51 51 1>;
+      		timing,v-porch = <1 2 1>;
+      		timing,dsi-hs-clk = <480>;
+      		timing,dsi-escape-clk = <20>;
+      		mic = <0>;
+      		mic_ver = <1>;         /* 0: mic v1.1, 1: v1.2, 2: v2.0 */
+      		type_of_ddi = <0>; /* 0:Samsung Mobile */
+	};
+};
+#endif
+
+#ifdef CONFIG_DTS_LCD_S6E8FA0
+&s6e8fa0_dsim {
+	lcd_info = <&s6e8fa0>;
+	/* lcd reset, power */
+	gpios = <&s6e8fa0_dsim_lcd_rst_bank s6e8fa0_dsim_lcd_rst_pin s6e8fa0_dsim_lcd_rst_func>, 
+				<&s6e8fa0_dsim_lcd_power_bank s6e8fa0_dsim_lcd_power_pin s6e8fa0_dsim_lcd_power_func>;
+	status = "okay";
+	s6e8fa0:s6e8fa0_fhd {
+      		compatible = "samsung,s6e8fa0x01";
+      		mode = <0>; /* 0: MIPI video mode */
+      		resolution = <1080 1920>;
+      		size = <71 114>;
+      		timing,refresh = <60>;
+      		timing,h-porch = <14 30 10>;
+      		timing,v-porch = <1 2 1>;
+      		timing,dsi-hs-clk = <960>;
+      		timing,dsi-escape-clk = <20>;
+      		mic = <0>;
+      		mic_ver = <1>;         /* 0: mic v1.1, 1: v1.2, 2: v2.0 */
+      		type_of_ddi = <0>; /* 0:Samsung Mobile */
+	};
+};        
+#endif

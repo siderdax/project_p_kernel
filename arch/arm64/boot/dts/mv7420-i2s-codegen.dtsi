@@ -1,0 +1,56 @@
+
+#include "mv7420-i2s-codegen.h"
+
+#ifdef CONFIG_DTS_AUDIOCODEC_RT5647
+&rt5647_i2s {
+	pinctrl-0 = <&rt5647_i2s_bus_sd0>;
+	pinctrl-1 = <&rt5647_i2s_bus_idle_sd0>;
+	status = "okay";
+	sound {
+                compatible = "samsung,espresso_rt5647";
+                rt5647,headphone_jack_detect_gpio = <&audio_rt5647_detect_bank audio_rt5647_detect_pin audio_rt5647_detect_func>;
+                rt5647,ear_jack_detect_gpio = <&audio_rt5647_ear_bank audio_rt5647_ear_pin audio_rt5647_ear_func>;
+                clocks = <&clock 41>;
+                clock-names = "fout_aud_pll";
+                pinctrl-names = "default", "idle";
+                pinctrl-0 = <&codec_irq>;
+                pinctrl-1 = <&codec_irq_idle>;
+                samsung,audio-cpu = <&rt5647_i2s               /* primary */
+                                     &rt5647_i2s>;             /* secondary */
+                samsung,audio-cpu-hdmi = <&hdmi_audio_i2s>;        /* hdmi */
+                samsung,audio-codec = <&rt5647_codec
+                                       &rt5647_codec
+                                       &audio_codec_dummy
+                                       &rt5647_codec
+                                       &rt5647_codec>;
+                status = "okay";
+	};
+};
+#endif
+
+#ifdef CONFIG_DTS_AUDIOCODEC_WM5110
+&wm5110_i2s{
+	pinctrl-0 = <&wm5110_i2s_bus_sd0>;
+	pinctrl-1 = <&wm5110_i2s_bus_idle_sd0>;
+	status = "okay";	
+	sound {
+		compatible = "samsung,espresso_wm5110";
+		pinctrl-names = "default", "idle";
+		pinctrl-0 = <&codec_irq>;
+		pinctrl-1 = <&codec_irq_idle>;			       
+		samsung,audio-cpu = <&wm5110_i2s               /* primary */
+				     &wm5110_i2s>;             /* secondary */
+		samsung,audio-cpu-hdmi = <&hdmi_audio_i2s>;        /* hdmi */
+		samsung,audio-codec = <&audio_codec
+				       &audio_codec
+				       &audio_codec_dummy>;
+		status = "okay";
+	};
+};
+#endif
+
+#ifdef CONFIG_DTS_HDMI
+&hdmi_audio_i2s {
+	status = "okay";
+};
+#endif

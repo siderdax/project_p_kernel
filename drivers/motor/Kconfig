@@ -1,0 +1,9 @@
+#
+#
+#
+config HAPTIC_ISA1200
+	tristate "haptic ISA1200 motor(mv7420)"
+	default n
+	depends on I2C
+	help
+	  Say Y to enalbe the ISA1200 IC.
